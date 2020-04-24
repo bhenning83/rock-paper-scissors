@@ -1,0 +1,40 @@
+<script>
+    let computerSelection = computerPlay()
+    let playerSelection = prompt("Rock, Paper, or Scissors?", "").toLowerCase()
+    let userScore
+    
+ 
+function playRound (playerSelection, computerSelection) {
+if (playerSelection == "rock" && computerSelection == "scissors") {
+    return ("Winner Winner Chicken Dinner!");
+} else if (playerSelection == "paper" && computerSelection == "rock") {
+    return ("Winner Winner Chicken Dinner!");
+} else if (playerSelection == "scissors" && computerSelection == "paper") {
+    return ("Winner Winner Chicken Dinner!");
+} else if (playerSelection == computerSelection) {
+    return ("It's a tie.");
+} else {
+    return ("You lose, idiot.");
+}
+} 
+
+function game() {
+   let roundOne = playRound(playerSelection, computerSelection);
+   let roundTwo = playRound(playerSelection, computerSelection);
+   let roundThree = playRound(playerSelection, computerSelection);
+   let roundFour = playRound(playerSelection, computerSelection);
+   let roundFive = playRound(playerSelection, computerSelection);
+    let userScore = (roundFive + roundFour + roundThree + roundTwo + roundOne);
+}
+function computerPlay() {
+    let pick = Math.floor(Math.random() * 9);
+    if (pick <= 2) {
+        return "rock";
+    } else if (pick >= 6) {
+        return "scissors"
+    } else {
+        return "paper"
+    }
+}
+console.log(playRound(playerSelection, computerSelection))
+</script>
