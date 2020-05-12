@@ -28,13 +28,16 @@
     const choices = document.querySelectorAll('button');
     const youPlayed = document.querySelector('#you-played');
     const computerPlayed = document.querySelector('#computer-played')
-    const playerChoiceDisplay = document.createElement('div');
+    const playerChoiceDisplay = document.createElement('div')
+    playerChoiceDisplay.setAttribute('id', 'player-choice-display');
     const compChoiceDisplay = document.createElement('div')
+    compChoiceDisplay.setAttribute('id', 'comp-choice-display');
+    
     let playerScore = 0;
     let computerScore = 0;
     homeScore.textContent = `Home team score: ${playerScore}`;
     awayScore.textContent = `Away team score: ${computerScore}`;
-let playerSelection = choices.forEach(choice => {
+    let playerSelection = choices.forEach(choice => {
     choice.addEventListener('click', (e) => {
         playerSelection = e.target.id
     });
@@ -58,7 +61,6 @@ function game() {
 }
 function playerPlayDisplay() {
     playerChoiceDisplay.textContent = playerSelection;
-    compChoiceDisplay.id = 'playerChoiceDisplay';
     youPlayed.appendChild(playerChoiceDisplay);
 }
 function displayScores() {
@@ -95,7 +97,6 @@ function newGame() {
 function playRound(e) {  
     let computerSelection = computerPlay() 
     compChoiceDisplay.textContent = computerSelection;
-    compChoiceDisplay.id = 'compChoiceDisplay';
     computerPlayed.appendChild(compChoiceDisplay);
     playerPlayDisplay()
 if (playerSelection == "rock" && computerSelection == "scissors") {
