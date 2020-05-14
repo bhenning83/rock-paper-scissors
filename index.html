@@ -18,6 +18,8 @@
             <p id='you-played'>You played:</p>
             <p id='computer-played'>The computer played:</p>
         </div>
+        <div id='result-container'>
+        </div>
     </body>
 
 
@@ -32,7 +34,11 @@
     playerChoiceDisplay.setAttribute('id', 'player-choice-display');
     const compChoiceDisplay = document.createElement('div')
     compChoiceDisplay.setAttribute('id', 'comp-choice-display');
-    
+    const resultContainer = document.querySelector('#result-container')
+    let win;
+    let loss;
+    let tie;
+
     let playerScore = 0;
     let computerScore = 0;
     homeScore.textContent = `Home team score: ${playerScore}`;
@@ -67,6 +73,36 @@ function displayScores() {
     homeScore.textContent = `Home team score: ${playerScore}`;
     awayScore.textContent = `Away team score: ${computerScore}`;
 }
+function displayWinResult() {
+    if (loss == true) loss.remove();
+    if (tie == true) tie.remove();
+    const win = document.createElement('div');
+    win.textContent = 'Dude, nice'
+    win.setAttribute('id', 'win');
+    win.setAttribute('class', 'result');
+    win.currentTime = 0;
+    resultContainer.appendChild(win)
+}
+function displayLossResult() {
+    if (win == true) win.remove();
+    if (tie == true) tie.remove();
+    const loss = document.createElement('div');
+    loss.textContent = 'Idiot'
+    loss.setAttribute('id', 'loss');
+    loss.setAttribute('class', 'result')
+    loss.currentTime = 0;
+    resultContainer.appendChild(loss)
+}
+function displayTieResult() {
+    if (win == true) win.remove();
+    if (loss == true) loss.remove();
+    const tie = document.createElement('div');
+    tie.textContent = 'Tie';
+    tie.setAttribute('id', 'tie');
+    tie.setAttribute('class', 'result');
+    tie.currentTime = 0;
+    resultContainer.appendChild(tie);
+}
 function newGame() {
     if (playerScore == 5) {
         let r = confirm('You win! Play again?')
@@ -98,22 +134,28 @@ function playRound(e) {
     let computerSelection = computerPlay() 
     compChoiceDisplay.textContent = computerSelection;
     computerPlayed.appendChild(compChoiceDisplay);
-    playerPlayDisplay()
+    playerPlayDisplay();
 if (playerSelection == "rock" && computerSelection == "scissors") {
     (playerScore += 1);
+    displayWinResult();
 } else if (playerSelection == "paper" && computerSelection == "rock") {
     (playerScore += 1);
+    displayWinResult();
 } else if (playerSelection == "scissors" && computerSelection == "paper") {
     (playerScore += 1);
+    displayWinResult();
 } else if (playerSelection == computerSelection) {
     console.log("Tie.");
+    displayTieResult();
 } else {
     (computerScore += 1);
+    displayLossResult();
 }
-displayScores()
-newGame()
+displayScores();
+newGame();
 }
-game();
+game(); 
 </script>
 
 </html>
+
