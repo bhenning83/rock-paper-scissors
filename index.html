@@ -129,6 +129,8 @@ function newGame() {
         if (r == true); {
             computerScore = 0;
             playerScore = 0;
+            playerChoiceDisplay.textContent = '';
+            compChoiceDisplay.textContent = '';
             displayScores()
             game()
         } if (r !== true) {
