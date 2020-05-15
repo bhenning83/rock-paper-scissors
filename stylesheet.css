@@ -73,6 +73,9 @@ button {
 #comp {
     margin: 0;
 }
+button:hover {
+    cursor: pointer;
+}
 button:focus { outline:0 !important; }
 #you-played-container {
     display: flex;
