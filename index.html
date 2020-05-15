@@ -5,18 +5,28 @@
     </head>
     <body>
         <h1>Rock, Paper, Scissors?</h1>
-        <div id='button-container'>
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissors">Scissors</button><br>
-        </div>
-        <div id="score-tracker">
-            <div id="player-score"></div>
-            <div id="computer-score"></div>
-        </div>
-        <div id='play-display-container'>
-            <p id='you-played'>You played:</p>
-            <p id='computer-played'>The computer played:</p>
+        <div id='container'>
+            <div id='player-score-container'>
+                <p>Home team score:</p>
+                <div id="player-score"></div>
+                <div id='you-played-container'>
+                    <p id='you'>You played:</p>
+                    <p id='you-played'></p>
+                </div>
+            </div>
+            <div id='button-container'>
+                <button class='choice' id='rock'>Rock</button>
+                <button class='choice' id='paper'>Paper</button>
+                <button class='choice' id="scissors">Scissors</button><br>
+            </div>
+            <div id='computer-score-container'>
+                <p>Away team score:</p>
+                <div id="computer-score"></div>
+                <div id='computer-played-container'>
+                    <p id='comp'>The computer played:</p>
+                    <p id='computer-played'></p>
+                </div>
+            </div>
         </div>
         <div id='result-container'>
         </div>
@@ -27,7 +37,7 @@
     const body = document.querySelector('body')
     const homeScore = document.querySelector("#player-score");
     const awayScore = document.querySelector("#computer-score");
-    const choices = document.querySelectorAll('button');
+    const choices = document.querySelectorAll('.choice');
     const youPlayed = document.querySelector('#you-played');
     const computerPlayed = document.querySelector('#computer-played')
     const playerChoiceDisplay = document.createElement('div')
@@ -35,19 +45,28 @@
     const compChoiceDisplay = document.createElement('div')
     compChoiceDisplay.setAttribute('id', 'comp-choice-display');
     const resultContainer = document.querySelector('#result-container')
+    const buttons = document.querySelectorAll('button')
     let win;
     let loss;
     let tie;
 
     let playerScore = 0;
     let computerScore = 0;
-    homeScore.textContent = `Home team score: ${playerScore}`;
-    awayScore.textContent = `Away team score: ${computerScore}`;
+    homeScore.textContent = `${playerScore}`;
+    awayScore.textContent = `${computerScore}`;
     let playerSelection = choices.forEach(choice => {
     choice.addEventListener('click', (e) => {
         playerSelection = e.target.id
     });
 });
+buttons.forEach(button => {
+    button.addEventListener('mousedown', (border) => {
+        border.target.style.border = '6px solid #ffcbb3';
+    });
+    button.addEventListener('mouseup', (remove) => {
+        remove.target.style.border = '1px solid black'
+    })
+})
 function computerPlay() {
     let pick = Math.floor(Math.random() * 9);
         if (pick <= 2) {
@@ -70,8 +89,8 @@ function playerPlayDisplay() {
     youPlayed.appendChild(playerChoiceDisplay);
 }
 function displayScores() {
-    homeScore.textContent = `Home team score: ${playerScore}`;
-    awayScore.textContent = `Away team score: ${computerScore}`;
+    homeScore.textContent = `${playerScore}`;
+    awayScore.textContent = `${computerScore}`;
 }
 function displayWinResult() {
     if (loss == true) loss.remove();
